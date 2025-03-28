@@ -1,11 +1,11 @@
 function add(numbers) {
     if (!numbers) return 0;
   
-    let delimiter = /,|\n/;
+    let delimiter = /,|\\n/; // Default delimiters: comma and newline
     if (numbers.startsWith("//")) {
-      const parts = numbers.split("\n");
-      delimiter = new RegExp(parts[0].slice(2));
-      numbers = parts[1];
+      const parts = numbers.split("\\n");
+      delimiter = new RegExp(parts[0].slice(2)); // Extract custom delimiter
+      numbers = parts.slice(1).join("\n"); // Remove delimiter line
     }
   
     const numArray = numbers
