@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { add } from "./utils/stringCalculator";
 
+import "./styles.css";
+
 function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");

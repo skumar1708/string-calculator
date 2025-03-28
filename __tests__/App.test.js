@@ -16,6 +16,28 @@ describe("String calculator UI test cases", () => {
     expect(screen.getByPlaceholderText("Enter numbers")).toBeInTheDocument();
     expect(screen.getByText("Calculate")).toBeInTheDocument();
   });
+  
+  test("calculates sum correctly", () => {
+    render(<App />);
+    const input = screen.getByPlaceholderText("Enter numbers");
+    const button = screen.getByText("Calculate");
+  
+    fireEvent.change(input, { target: { value: "1,2,3" } });
+    fireEvent.click(button);
+  
+    expect(screen.getByText("Result: 6")).toBeInTheDocument();
+  });
+  
+  test("displays error for negative numbers", () => {
+    render(<App />);
+    const input = screen.getByPlaceholderText("Enter numbers");
+    const button = screen.getByText("Calculate");
+  
+    fireEvent.change(input, { target: { value: "-1,2,-3" } });
+    fireEvent.click(button);
+  
+    expect(screen.getByText("negative numbers not allowed -1,-3")).toBeInTheDocument();
+  });
 });
 
 
